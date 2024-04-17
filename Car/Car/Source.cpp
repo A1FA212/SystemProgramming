@@ -15,7 +15,7 @@ public:
     {
         return fuel_level;
     }
-    Tank(int volume) :VOLUME(volume)
+    int check(int volume)
     {
         if (volume < MIN_TANK_VOLUME)
         {
@@ -25,9 +25,12 @@ public:
         {
             volume = MAX_TANK_VOLUME;
         }
+        return volume;
+    }
+    Tank(int volume) :VOLUME(check(volume))
+    {
         this->fuel_level = 0;
         cout << "Tank is ready";
-        //this->VOLUME = volume;
     }
     void fill(double ammount)
     {
