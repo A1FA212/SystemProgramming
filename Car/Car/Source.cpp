@@ -105,6 +105,7 @@
 //}
 
 #include <iostream>
+#include <conio.h>
 using namespace std;
 #define MIN_TANK_VOLUME 20
 #define MAX_TANK_VOLUME 120
@@ -210,7 +211,54 @@ public:
         cout << "Engine is " << (is_started ? "started" : "stoped") <<"\n";
     }
 };
-#define TANK_CHECK
+
+class CAR {
+    Engine engine;
+    Tank tank;
+    bool Driver;
+public:
+    CAR(int consumption = 10, int volume = 60) :engine(consumption), tank(volume), Driver(false) {
+        cout << "Your car is ready" << endl;
+    }
+    ~CAR() {
+        cout << "Your car is over" << endl;
+    }
+    void getin() {
+        Driver = true;
+        panel();
+    }
+    void getout() {
+        Driver = false;
+        cout << "Out of the car" << endl;
+    }
+    void control() 
+    {
+        char key;
+        do {
+            key = _getch();
+            switch (key)
+            {
+            case 13: Driver ? getout() : getin();
+            }
+        } while (key != 27);
+
+    }
+
+    void panel()const {
+        while (Driver)
+        {
+            system("CLS");
+            cout << "Fuel level:" << tank.getfule_level() << "liters.\n";
+            cout << "Enhine is " << (engine.started() ? "started" : "stoped") << endl;
+        }
+    }
+    void info()const {
+        engine.info();
+        tank.info();
+    }
+};
+//#define ENGINE
+//#define TANK_CHECK
 void main()
 {
     setlocale(LC_ALL, "");
@@ -227,7 +275,13 @@ void main()
         tank.info();
     } while (fuel > 0);
 #endif //  TANK_CHEK
-
+#ifdef ENGINE
     Engine engine(10);
     engine.info();
+#endif // ENGINE
+
+    CAR bmw;
+    bmw.info();
+    bmw.control();
+
 }
