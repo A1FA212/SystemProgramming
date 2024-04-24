@@ -279,14 +279,6 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     Tank tank(70);
-    /*int fuel = 0;
-    do
-    {
-        cout << "¬ведите сколько топлива вы хотите заправить: ";
-        cin >> fuel;
-    }while (fuel == 0);
-    tank.fill(fuel);
-    tank.info();*/
 #ifdef TANK_CHECK
     // если определено tank_check, то нже следующий код до директивы #endif будет виден компил€тору.
     Tank tank(70);
